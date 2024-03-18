@@ -1,11 +1,10 @@
 from transformers import pipeline
 from pydantic import BaseModel
-import requests
 from fastapi import FastAPI
 from ray import serve
 
-app = FastAPI()
 
+app = FastAPI()
 
 # Request and repsonse types
 class GeneratorRequest(BaseModel):
@@ -14,7 +13,6 @@ class GeneratorRequest(BaseModel):
 
 class GeneratorResponse(BaseModel):
     selfies_sequence:str
-
 
 
 @serve.deployment(num_replicas=2, ray_actor_options={"num_cpus": 0.2, "num_gpus": 0})

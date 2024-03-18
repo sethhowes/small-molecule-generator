@@ -1,5 +1,9 @@
-# File name: Dockerfile
-FROM rayproject/ray:2.5.0
+# Use the official Ubuntu 20.04 base image
+FROM rayproject/ray:2.9.3-py39-cu118
+
+# Set environment variable to non-interactive (this prevents some prompts)
+ENV DEBIAN_FRONTEND=noninteractive
+USER root
 
 # Set working directory
 WORKDIR /serve_app
@@ -12,4 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py /serve_app/app.py
 
 # Run ray serve
-RUN serve run -p 1456 app:generator_app
+CMD ["serve", "run", "-p", "1456", "app:generator_app"]
