@@ -6,7 +6,7 @@ from ray import serve
 
 app = FastAPI()
 
-# Request and repsonse types
+# Request and repsonse data models
 class GeneratorRequest(BaseModel):
     selfies_sequence: str
     target_location: str
@@ -33,4 +33,5 @@ class ChemGPT:
         return {"selfies_sequence": sequence}
 
 
-generator_app = ChemGPT.bind()
+# Run the deployment
+serve.run(ChemGPT.bind())
