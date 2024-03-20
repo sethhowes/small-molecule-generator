@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py /serve_app/app.py
 
 # Run ray serve
-CMD ["serve", "run", "-p", "1456", "app:generator_app"]
+RUN ["python", "app.py"]
