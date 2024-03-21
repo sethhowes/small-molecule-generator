@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py /serve_app/app.py
 
 # Run ray serve
-RUN ["python", "app.py"]
+CMD ["python", "app.py"]
